@@ -86,6 +86,33 @@ The data is now in the RDD and we cannot visualise it so we have to bring it to 
 
 ---
 
+### Visualising the data
+
+The output folder contains a part-00000 file which has the key-value pairs in it. copy the data to an excel and split the data using the delimiter. Create a chart by selecting the words you want, I selected the top 10 words and the chart is shown below.
+
+
+![Top 10 words in All's Well That Ends Well](./aiw.jpg)
+
+---
+
+### References:
+
+- Setting up windows for professional development - [https://github.com/denisecase/windows-setup](https://github.com/denisecase/windows-setup)
+- Setting up spark on windows - [https://github.com/denisecase/setup-spark](https://github.com/denisecase/setup-spark)
+
+- Data for the project obtained at - [http://shakespeare.mit.edu/allswell/full.html](http://shakespeare.mit.edu/allswell/full.html)
+
+- Guide for RDD programming - [https://spark.apache.org/docs/latest/rdd-programming-guide.html](https://spark.apache.org/docs/latest/rdd-programming-guide.html)
+
+- Test your regex - [https://www.regextester.com/](https://www.regextester.com/)
+
+- Common words in English [https://en.wikipedia.org/wiki/Most_common_words_in_English](https://en.wikipedia.org/wiki/Most_common_words_in_English)
+
+- Wikipedia [https://en.wikipedia.org/wiki/Main_Page](https://en.wikipedia.org/wiki/Main_Page)
+
+---
+
+
 
 
 
