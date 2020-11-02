@@ -38,6 +38,60 @@ Now lets remove most of the common words as well using the same ```sed``` comman
 
 You can do further cleaning if needed. 
 
+---
+
+#### Working with spark 
+
+Open Powershell as Administrator in the repo folder and run the command ```spark-shell```. This will bring up spark with scala.
+
+Create a Resilient Distributed Dataset (RDD) to start working with. Before we start working with RDD, a brief description of RDD's are available here [https://spark.apache.org/docs/latest/rdd-programming-guide.html](https://spark.apache.org/docs/latest/rdd-programming-guide.html)
+
+##### Steps:
+1. Text file RDDs can be created using SparkContext’s textFile method. 
+
+    ```val aiwRdd = sc.textFile("allIsWell_final.txt")``` 
+
+    This command creates an RDD from the cleaned file for us to start working.
+
+2. Split the data based on spaces and save it into a new dataset using the ```flatMap``` method. Use the command to do so
+    ```val splitedData = aiwRdd.flatMap(line => line.split(" "));```
+
+    This command creates an array of words which can be seen by using the ```collect()``` method of RDD.
+
+3. Now that we have our words split, we need to count them. So the ```map()``` method helps us in creating key-value pairs. Lets just start by assiging each key(word) a value of 1. This is called mapping of data.
+
+    ```val mappedData = splitedData.map(word =>(word,1));```
+
+    Now the ```collect()``` method returns, key-value pairs of words with a count of 1. Now lets add them up which is reducing in Bigdata terms.
+
+4. Use the command to reduce the key-value pairs to be unique. 
+
+    ```val reducedData = mappedData.reduceByKey(_+_);```
+
+    Now the ```collect()``` method returns the counts of individual words. Now lets sort the data in order to find the word that was most used.
+
+5. The ```sortBy()``` method helps us in doing so
+
+    ``` val sortedData = reducedData.sortBy(_._2, false)```
+
+    The ```collect()``` method now returns the data in descending order of counts. You can just get the top 10 elements using the ```take()``` method. ```sortedData.take(10)```
+
+---
+
+#### Getting the RDD for visualization
+
+The data is now in the RDD and we cannot visualise it so we have to bring it to our local machine and to make it happen, RDD has a method ```saveAsTextFile()```. Use the below command to bring the RDD to our local machine.
+
+```sortedData.saveAsTextFile("output")```
+
+---
+
+
+
+
+
+
+
 
 
 
